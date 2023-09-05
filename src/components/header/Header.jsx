@@ -43,7 +43,7 @@ const Header = () => {
             }
           ></div>
 
-          <ul>
+          <ul onClick={toggleMenu}>
             <li className="mobile-logo">{logo}</li>
             <li>
               <Link to="/">Home</Link>
@@ -52,7 +52,7 @@ const Header = () => {
               <Link to="/contact">Contact</Link>
             </li>
           </ul>
-          <div className="header-right">
+          <div className="header-right" onClick={toggleMenu}>
             <span className="links">
               <Link to="/login">Login</Link>
               <Link to="/register">Register</Link>
