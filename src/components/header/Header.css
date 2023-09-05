@@ -20,6 +20,9 @@ header {
   color: #fff;
   cursor: pointer;
 }
+.mobile-logo {
+  display: none;
+}
 span {
   color: orangered;
 }
@@ -79,4 +82,89 @@ p {
 }
 .links a:active {
   color: var(--color-danger);
+}
+
+.menu-icon {
+  cursor: pointer;
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .mobile-logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100vh;
+    background-color: var(--dark-blue);
+    z-index: 999;
+    transform: translateX(-200%);
+    transition: all 0.3s;
+  }
+  nav-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100vh;
+    transform: translateX();
+    transition: all 0.3s;
+  }
+  .show-nav {
+    transform: translateX(-200%);
+  }
+  .hide-nav {
+    transform: translateX(0);
+  }
+  .show-nav-wrapper {
+    transform: translateX(100%);
+  }
+
+  nav ul {
+    display: block;
+  }
+  ul li {
+    padding: 5px 0;
+    border-bottom: 1px solid #333;
+  }
+  li a {
+    display: block;
+  }
+
+  .header-right {
+    display: block;
+  }
+  .header-right .links {
+    display: block;
+  }
+  .header-right a {
+    display: block;
+    margin: 0;
+    padding: 5px 5px;
+    border-bottom: 1px solid #333;
+  }
+  .cart {
+    display: block;
+  }
+  .cart a {
+    color: #fff;
+    position: relative;
+  }
+  .cart a:hover {
+    color: orangered;
+  }
+
+  .menu-icon {
+    display: flex;
+  }
+  .menu-icon > * {
+    margin-left: 2rem;
+  }
 }

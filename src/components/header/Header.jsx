@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaTimes } from "react-icons/fa";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
 
 const logo = (
   <div className="logo">
@@ -23,12 +24,27 @@ const cart = (
 );
 
 const Header = () => {
+  const [showMenu, setShowMenu] = useState(false);
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
+
   return (
     <header>
       <div className="header">
         {logo}
-        <nav>
+        <nav className={showMenu ? `${"show-nav"}` : `${"hide-nav"}`}>
+          <div
+            className={
+              showMenu
+                ? `${"nav-wrapper"}${"show-nav-wrapper"}`
+                : `${"nav-wrapper"}`
+            }
+          ></div>
+
           <ul>
+            <li className="mobile-logo">{logo}</li>
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -45,6 +61,15 @@ const Header = () => {
             {cart}
           </div>
         </nav>
+
+        <div className="menu-icon">
+          {cart}
+          {showMenu ? (
+            <HiOutlineMenuAlt3 size={28} onClick={toggleMenu} />
+          ) : (
+            <FaTimes size={28} color="#fff" onClick={toggleMenu} />
+          )}
+        </div>
       </div>
     </header>
   );
