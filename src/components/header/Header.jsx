@@ -1,5 +1,5 @@
 import React from "react";
-import "./Header.scss";
+import "./Header.css";
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 
