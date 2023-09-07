@@ -3,7 +3,7 @@
   background-color: var(--color-dark);
   color: #fff;
   display: flex;
-  height: 20rem;
+  height: 10vh;
 }
 .left {
   display: flex;
