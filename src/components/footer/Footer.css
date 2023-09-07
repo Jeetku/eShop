@@ -1,6 +1,6 @@
 .footer {
   width: 100%;
-  background-color: var(--color-dark);
+  background-color: var(--dark-blue);
   color: #fff;
   display: flex;
   height: 10vh;
