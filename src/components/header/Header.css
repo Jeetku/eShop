@@ -100,7 +100,7 @@ p {
     position: absolute;
     top: 0;
     left: 0;
-    width: 50%;
+    width: 30%;
     height: 100vh;
     background-color: var(--dark-blue);
     z-index: 999;
@@ -159,6 +159,11 @@ p {
   }
   .cart a:hover {
     color: orangered;
+  }
+  .cart p {
+    position: absolute;
+    left: 5.5rem;
+    margin-top: 6px;
   }
 
   .menu-icon {
