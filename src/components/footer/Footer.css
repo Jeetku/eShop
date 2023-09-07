@@ -1,0 +1,84 @@
+.footer {
+  width: 100%;
+  background-color: var(--color-dark);
+  color: #fff;
+  display: flex;
+  height: 20rem;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.left a {
+  margin-top: 0.5rem;
+  margin-left: 2rem;
+  color: lightgray;
+  font-size: 12px;
+}
+.left a:hover {
+  color: orangered;
+}
+
+.center {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+.center h1 {
+  font-size: 12px;
+  font-weight: normal;
+  color: #fff;
+}
+.center span {
+  font-size: 12px;
+  font-weight: normal;
+  color: orangered;
+}
+.right {
+  flex: 1;
+}
+.right .socials {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  margin-left: 25rem;
+}
+.right .socials h4 {
+  color: lightgray;
+}
+.right .socials ul {
+  margin-bottom: 1rem;
+  display: flex;
+  color: lightgray;
+  width: 20%;
+}
+
+@media screen and (max-width: 800px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 20rem;
+    font-size: 1rem;
+  }
+  .left a {
+    margin-right: 1.5rem;
+    font-size: 1rem;
+  }
+  .center {
+    position: absolute;
+    bottom: 0;
+  }
+  .center > .copyright {
+    margin-left: 7rem;
+  }
+  .right {
+    position: absolute;
+  }
+}

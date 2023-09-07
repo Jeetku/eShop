@@ -5,7 +5,7 @@ import { FaShoppingCart, FaTimes } from "react-icons/fa";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 
 const activeLink = ({ isActive }) => (isActive ? `${"active"}` : "");
-const logo = (
+export const logo = (
   <div className="logo">
     <Link to="/">
       <h2>
