@@ -2,20 +2,25 @@ import React from "react";
 import registerImage from "../../assets/register.png";
 import "./Auth.css";
 import { Link } from "react-router-dom";
+import Card from "../../components/card/Card";
 
 const Register = () => {
   return (
     <section className="container auth">
       <div className="form">
         <h2>Register</h2>
-        <form>
-          <input type="email" placeholder="Email" required />
-          <input type="password" placeholder="Password" required />
-          <input type="password" placeholder="Confirm Password" required />
-          <button className="--btn --btn-primary --btn-block">Register</button>
-        </form>
+        <Card>
+          <form>
+            <input type="email" placeholder="Email" required />
+            <input type="password" placeholder="Password" required />
+            <input type="password" placeholder="Confirm Password" required />
+            <button className="--btn --btn-primary --btn-block">
+              Register
+            </button>
+          </form>
+        </Card>
         <span className="register">
-          <h6>Already an account?</h6>
+          <h5>Already an account?</h5>
           <Link to="/login">Login</Link>
         </span>
       </div>
