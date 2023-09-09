@@ -4,10 +4,10 @@ import "./Auth.css";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../../components/card/Card";
 import Loader from "../../components/loader/Loader";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/Config";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -41,7 +41,7 @@ const Register = () => {
 
   return (
     <>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       {isLoading && <Loader />}
       <section className="container auth">
         <div className="form">

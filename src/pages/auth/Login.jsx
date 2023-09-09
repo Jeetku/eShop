@@ -5,10 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import Card from "../../components/card/Card";
 import Loader from "../../components/loader/Loader";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/Config";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -38,7 +38,7 @@ const Login = () => {
 
   return (
     <>
-      <ToastContainer />
+     
       {isLoading && <Loader />}
 
       <section className="container auth">
