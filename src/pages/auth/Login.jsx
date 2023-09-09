@@ -24,21 +24,21 @@ const Login = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        setIsLoading(false);
+        setIsLoading(isLoading);
         const user = userCredential.user;
+        alert(user.email);
 
         naviagate("/");
         toast.success("Login confirmed");
       })
       .catch((error) => {
-        setIsLoading(false);
+        setIsLoading(isLoading);
         toast.error("User credentials not correct", error);
       });
   };
 
   return (
     <>
-     
       {isLoading && <Loader />}
 
       <section className="container auth">

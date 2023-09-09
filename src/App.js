@@ -5,7 +5,7 @@ import { Header, Footer } from "./components";
 // Pages
 import { Home, Contact, Login, Register, Reset } from "./pages";
 // Toast
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {

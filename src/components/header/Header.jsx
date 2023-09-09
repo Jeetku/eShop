@@ -6,7 +6,6 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/Config";
 import { toast } from "react-toastify";
-import Loader from "../loader/Loader";
 
 const activeLink = ({ isActive }) => (isActive ? `${"active"}` : "");
 export const logo = (
@@ -42,10 +41,12 @@ const Header = () => {
     setIsLoading(true);
     signOut(auth)
       .then(() => {
+        setIsLoading(!isLoading);
         toast.success("Logout successfully...");
         naviagate("/login");
       })
       .catch((error) => {
+        setIsLoading(!isLoading);
         toast.error(error.message);
       });
   };
