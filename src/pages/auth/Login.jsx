@@ -6,7 +6,11 @@ import { FaGoogle } from "react-icons/fa";
 import Card from "../../components/card/Card";
 import Loader from "../../components/loader/Loader";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "../../firebase/Config";
 import { toast } from "react-toastify";
 
@@ -26,14 +30,30 @@ const Login = () => {
       .then((userCredential) => {
         setIsLoading(isLoading);
         const user = userCredential.user;
-        alert(user.email);
+        // alert(user.email);
 
         naviagate("/");
-        toast.success("Login confirmed");
+        toast.success("Logged in successfully");
       })
       .catch((error) => {
         setIsLoading(isLoading);
         toast.error("User credentials not correct", error);
+      });
+  };
+
+  // sign in with google
+  const provider = new GoogleAuthProvider();
+  const signInWithGoogle = (e) => {
+    e.preventDefault();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        naviagate("/");
+        toast.success("Logged in successfully");
+      })
+      .catch((error) => {
+        setIsLoading(isLoading);
+        toast.error(error.message);
       });
   };
 
@@ -73,7 +93,10 @@ const Login = () => {
               <h5>-- or --</h5>
             </form>
 
-            <button className="--btn --btn-danger --btn-block">
+            <button
+              className="--btn --btn-danger --btn-block"
+              onClick={signInWithGoogle}
+            >
               <FaGoogle color="#fff" /> Login with Google
             </button>
           </Card>
