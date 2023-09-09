@@ -6,6 +6,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/Config";
 import { toast } from "react-toastify";
+import Loader from "../loader/Loader";
 
 const activeLink = ({ isActive }) => (isActive ? `${"active"}` : "");
 export const logo = (
@@ -50,62 +51,63 @@ const Header = () => {
   };
 
   return (
-    <header>
-      <div className="header">
-        {logo}
-        <nav className={showMenu ? `${"show-nav"}` : `${"hide-nav"}`}>
-          <div
-            className={
-              showMenu
-                ? `${"nav-wrapper"}${"show-nav-wrapper"}`
-                : `${"nav-wrapper"}`
-            }
-          ></div>
+    <>
+      <header>
+        <div className="header">
+          {logo}
+          <nav className={showMenu ? `${"show-nav"}` : `${"hide-nav"}`}>
+            <div
+              className={
+                showMenu
+                  ? `${"nav-wrapper"}${"show-nav-wrapper"}`
+                  : `${"nav-wrapper"}`
+              }
+            ></div>
 
-          <ul onClick={toggleMenu}>
-            <li className="mobile-logo">{logo}</li>
-            <li>
-              <NavLink to="/" className={activeLink}>
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/contact" className={activeLink}>
-                Contact
-              </NavLink>
-            </li>
-          </ul>
-          <div className="header-right" onClick={toggleMenu}>
-            <span className="links">
-              <NavLink to="/login" className={activeLink}>
-                Login
-              </NavLink>
-              <NavLink to="/register" className={activeLink}>
-                Register
-              </NavLink>
-              <NavLink to="/order-history" className={activeLink}>
-                My Orders
-              </NavLink>
+            <ul onClick={toggleMenu}>
+              <li className="mobile-logo">{logo}</li>
+              <li>
+                <NavLink to="/" className={activeLink}>
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/contact" className={activeLink}>
+                  Contact
+                </NavLink>
+              </li>
+            </ul>
+            <div className="header-right" onClick={toggleMenu}>
+              <span className="links">
+                <NavLink to="/login" className={activeLink}>
+                  Login
+                </NavLink>
+                <NavLink to="/register" className={activeLink}>
+                  Register
+                </NavLink>
+                <NavLink to="/order-history" className={activeLink}>
+                  My Orders
+                </NavLink>
 
-              <NavLink to="/" onClick={logoutUser}>
-                {" "}
-                Logout
-              </NavLink>
-            </span>
+                <NavLink to="/" onClick={logoutUser}>
+                  Logout
+                </NavLink>
+              </span>
+              {cart}
+            </div>
+          </nav>
+
+          <div className="menu-icon">
             {cart}
+            {showMenu ? (
+              <HiOutlineMenuAlt3 size={28} onClick={toggleMenu} />
+            ) : (
+              <FaTimes size={28} color="#fff" onClick={toggleMenu} />
+            )}
           </div>
-        </nav>
-
-        <div className="menu-icon">
-          {cart}
-          {showMenu ? (
-            <HiOutlineMenuAlt3 size={28} onClick={toggleMenu} />
-          ) : (
-            <FaTimes size={28} color="#fff" onClick={toggleMenu} />
-          )}
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 };
 
