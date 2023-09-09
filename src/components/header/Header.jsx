@@ -42,7 +42,7 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         toast.success("Logout successfully...");
-        naviagate("/");
+        naviagate("/login");
       })
       .catch((error) => {
         toast.error(error.message);
