@@ -29,28 +29,11 @@ const cart = (
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [displayName, setDisplayName] = useState("");
 
-  const naviagate = useNavigate();
+  const [displayName, setDisplayName] = useState("");
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
-  };
-
-  const logoutUser = (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    signOut(auth)
-      .then(() => {
-        setIsLoading(!isLoading);
-        toast.success("Logout successfully...");
-        naviagate("/login");
-      })
-      .catch((error) => {
-        setIsLoading(!isLoading);
-        toast.error(error.message);
-      });
   };
 
   // Get the currently signed-in user
@@ -105,10 +88,6 @@ const Header = () => {
                 </NavLink>
                 <NavLink to="/order-history" className={activeLink}>
                   My Orders
-                </NavLink>
-
-                <NavLink to="/" onClick={logoutUser}>
-                  Logout
                 </NavLink>
 
                 <a href="/">
