@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { FaShoppingCart, FaTimes } from "react-icons/fa";
+import { FaShoppingCart, FaTimes, FaUserCircle } from "react-icons/fa";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase/Config";
 import { toast } from "react-toastify";
 
@@ -30,6 +30,8 @@ const cart = (
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [displayName, setDisplayName] = useState("");
+
   const naviagate = useNavigate();
 
   const toggleMenu = () => {
@@ -50,6 +52,19 @@ const Header = () => {
         toast.error(error.message);
       });
   };
+
+  // Get the currently signed-in user
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log(user.displayName);
+        setDisplayName(user.displayName);
+      } else {
+        setDisplayName("");
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -78,11 +93,13 @@ const Header = () => {
                 </NavLink>
               </li>
             </ul>
+
             <div className="header-right" onClick={toggleMenu}>
               <span className="links">
                 <NavLink to="/login" className={activeLink}>
                   Login
                 </NavLink>
+
                 <NavLink to="/register" className={activeLink}>
                   Register
                 </NavLink>
@@ -93,6 +110,11 @@ const Header = () => {
                 <NavLink to="/" onClick={logoutUser}>
                   Logout
                 </NavLink>
+
+                <a href="/">
+                  <FaUserCircle size={16} />
+                  {displayName}
+                </a>
               </span>
               {cart}
             </div>
