@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaShoppingCart, FaTimes, FaUserCircle } from "react-icons/fa";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/Config";
-import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { SET_ACTIVE_USER } from "../../redux/slice/authSlice";
 
 const activeLink = ({ isActive }) => (isActive ? `${"active"}` : "");
 export const logo = (
@@ -31,6 +32,7 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const [displayName, setDisplayName] = useState("");
+  const dispatch = useDispatch();
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -40,9 +42,18 @@ const Header = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid;
-        console.log(user.displayName);
+        // console.log(user);
+        // const uid = user.uid;
+        // console.log(user.displayName);
         setDisplayName(user.displayName);
+
+        dispatch(
+          SET_ACTIVE_USER({
+            email: user.email,
+            username: user.displayName,
+            userID: user.uid,
+          })
+        );
       } else {
         setDisplayName("");
       }
