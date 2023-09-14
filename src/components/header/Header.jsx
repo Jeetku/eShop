@@ -6,7 +6,10 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/Config";
 import { useDispatch } from "react-redux";
-import { SET_ACTIVE_USER } from "../../redux/slice/authSlice";
+import {
+  REMOVE_ACTIVE_USER,
+  SET_ACTIVE_USER,
+} from "../../redux/slice/authSlice";
 
 const activeLink = ({ isActive }) => (isActive ? `${"active"}` : "");
 export const logo = (
@@ -46,7 +49,9 @@ const Header = () => {
         // const uid = user.uid;
         // console.log(user.displayName);
         if (user.displayName == null) {
-          const u1 = user.email.slice(0, -10);
+          // const u1 = user.email.slice(0, -10);
+          //? more modified u1
+          const u1 = user.email.substring(0, user.email.indexOf("@"));
           const uName = u1.charAt(0).toUpperCase() + u1.slice(1);
           setDisplayName(uName);
         } else {
@@ -62,6 +67,7 @@ const Header = () => {
         );
       } else {
         setDisplayName("");
+        dispatch(REMOVE_ACTIVE_USER());
       }
     });
   }, []);
@@ -109,7 +115,7 @@ const Header = () => {
 
                 <a href="/">
                   <FaUserCircle size={16} />
-                  {displayName}
+                  Hi, {displayName}
                 </a>
               </span>
               {cart}
