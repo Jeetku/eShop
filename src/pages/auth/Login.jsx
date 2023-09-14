@@ -24,12 +24,12 @@ const Login = () => {
   const loginConfirmed = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    console.log(email, password);
+    // console.log(email, password);
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setIsLoading(isLoading);
-        const user = userCredential.user;
+        // const user = userCredential.user;
         // alert(user.email);
 
         naviagate("/");
@@ -47,7 +47,7 @@ const Login = () => {
     e.preventDefault();
     signInWithPopup(auth, provider)
       .then((result) => {
-        const user = result.user;
+        // const user = result.user;
         naviagate("/");
         toast.success("Logged in successfully");
       })
